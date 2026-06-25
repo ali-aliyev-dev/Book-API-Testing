@@ -1,0 +1,413 @@
+{
+  "info": {
+    "_postman_id": "9d8d93e9-c944-432e-97a3-affa3197578c",
+    "name": "Book API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52567170",
+    "_collection_link": "https://go.postman.co/collection/52567170-9d8d93e9-c944-432e-97a3-affa3197578c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responseBody = pm.response.json();\r",
+              "var accessToken = responseBody.accessToken;\r",
+              "pm.environment.set(\"accessToken\",accessToken)"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"clientName\": \"{{$randomFirstName}}\",\r\n    \"clientEmail\": \"{{$randomEmail}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api-clients",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api-clients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Domain",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function (){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time is less than 200ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+              "})\r",
+              "\r",
+              "pm.test(\"Response to be an object\", ()=> {\r",
+              "    pm.expect(pm.response.json()).to.be.an('object').that.has.property('message');\r",
+              "})\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}",
+          "host": [
+            "{{baseUrl}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Status",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response time is below 200ms\",function(){\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+              "})\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/status",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Books",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const response = pm.response.json();\r",
+              "var arrayLength = response.length;\r",
+              "var randomIndex = Math.floor(Math.random() * arrayLength);\r",
+              "var bookId = response[randomIndex].id;\r",
+              "pm.environment.set(\"bookId\",bookId)"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get the Book",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/:bookId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ":bookId"
+          ],
+          "variable": [
+            {
+              "key": "bookId",
+              "value": "{{bookId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Order a Book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.environment.set(\"orderId\", pm.response.json().orderId) \r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"bookId\": {{bookId}},\r\n    \"customerName\": \"{{$randomFirstName}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get an Order",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "{{orderId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update an Order",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"customerName\": \"John\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "{{orderId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Update",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "{{orderId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete an Order",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "{{orderId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Deletion",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "bookId",
+      "value": ""
+    },
+    {
+      "key": "orderId",
+      "value": ""
+    }
+  ]
+}
