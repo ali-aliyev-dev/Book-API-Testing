@@ -1,6 +1,4 @@
-# Book API Testing
-
-## Layihə haqqında
+# Book API Testing with Postman
 
 Bu layihə Simple Book API üzərində Postman vasitəsilə hazırlanmış API test layihəsidir. Layihədə API endpoint-lərinin funksionallığı, CRUD əməliyyatları, HTTP metodları və status code-lar yoxlanılmışdır.
 
