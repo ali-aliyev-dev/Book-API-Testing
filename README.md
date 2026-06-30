@@ -1,39 +1,60 @@
-# Book API Testing with Postman
+# 📚 Book API Testing with Postman
 
-Bu layihə Simple Book API üzərində Postman vasitəsilə hazırlanmış API test layihəsidir. Layihədə API endpoint-lərinin funksionallığı, CRUD əməliyyatları, HTTP metodları və status code-lar yoxlanılmışdır.
+## Layihə haqqında
+
+Bu layihə **Simple Book API** üzərində **Postman** vasitəsilə hazırlanmış API test layihəsidir. Layihə çərçivəsində API endpoint-lərinin funksionallığı, Authentication prosesi, CRUD (Create, Read, Update, Delete) əməliyyatları, HTTP metodları, Status Code-lar və Response məlumatlarının doğruluğu yoxlanılmışdır.
+
+
 
 ## İstifadə olunan alətlər
 
 - Postman
 - REST API
+- Swagger
 - GitHub
+
+
 
 ## Test edilən funksiyalar
 
-- Authentication / Token alma
+- Authentication (Token əldə edilməsi)
 - Domain yoxlanışı
-- API status yoxlanışı
-- Bütün kitabların gətirilməsi
-- Tək kitab məlumatının gətirilməsi
-- Kitab sifarişi yaratmaq
-- Bütün sifarişlərin gətirilməsi
-- Tək sifarişin gətirilməsi
+- API statusunun yoxlanılması
+- Bütün kitabların əldə edilməsi
+- Tək kitab məlumatının əldə edilməsi
+- Kitab sifarişinin yaradılması
+- Bütün sifarişlərin əldə edilməsi
+- Tək sifariş məlumatının əldə edilməsi
 - Sifariş məlumatının yenilənməsi
 - Sifarişin silinməsi
 
+
+
 ## Test Coverage
 
-- Positive testlər
-- Negative testlər
-- CRUD əməliyyatları
-- HTTP metodları
-- Status Code yoxlamaları
-- Response Body yoxlamaları
-- Response Time yoxlamaları
+- Authentication Testing
+- CRUD Operations Testing
+- Positive Testing
+- Negative Testing
+- HTTP Methods Validation
+- Status Code Validation
+- Response Body Validation
+- Response Time Validation
 
-## Postman Collection
 
-Layihədə istifadə olunan Postman Collection faylı:
 
-Book API.postman_collection.json
+## İstifadə olunan HTTP metodları
+
+- GET
+- POST
+- PATCH
+- DELETE
+
+
+
+## Repository məzmunu
+
+- `Book API.postman_collection.json`
+- `Book API.postman_environment.json`
+- `README.md`
 
