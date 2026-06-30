@@ -1,4 +1,4 @@
-# 📚 Book API Testing with Postman
+#  Book API Testing with Postman
 
 ## Layihə haqqında
 
